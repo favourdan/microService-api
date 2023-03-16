@@ -24,9 +24,9 @@ public class CustomerService{
                 .build();
         //SaveAndFlush to get customers id
          customerRepository.saveAndFlush(customer);
-
+         // connecting to fraud using its server name ....localhost:8083 to FRAUD
          FraudCheckResponse checkResponse = restTemplate.getForObject(
-                 "http://localhost:8083/api/v1/fraud/{customerId}",
+                 "http://FRAUD/api/v1/fraud/{customerId}",
                 FraudCheckResponse.class,customer.getId()
          );
          if(checkResponse.isFraudster()){
